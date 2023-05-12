@@ -1,0 +1,12 @@
+<!-- vote.html -->
+{% for candidate in candidates %}
+    <h2>{{ candidate.name }}</h2>
+    <p>{{ candidate.party }}</p>
+    <p>{{ candidate.votes }} votes</p>
+    <form method="post" action="{% url 'vote' %}">
+        {% csrf_token %}
+        <input type="hidden" name="candidate" value="{{ candidate.id }}">
+        <input type="email" name="email" placeholder="Enter your email">
+        <button type="submit">Vote</button>
+    </form>
+{% endfor %}
